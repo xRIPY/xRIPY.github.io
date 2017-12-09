@@ -49,7 +49,7 @@ $(function(){
 	var green = Math.floor(Math.random()*128+128);
 	var blue = Math.floor(Math.random()*128+128);
 	var StartCircle = new Circle(window.innerWidth/2,window.innerHeight/2,red,green,blue)
-	circles.push(StartCircle);
+	 circles.push(StartCircle);
 	
 	function animate(){
 		requestAnimationFrame(animate);
