@@ -1,0 +1,69 @@
+<html>
+<head>
+<title> Simple Convertor </title>
+<link rel="stylesheet" type="text/css" href="../css/Convertor.css">
+</head>
+<body>
+<!------------------------------------------------------------------------------------------------------------------>
+<table>
+  <tr>
+    <th>Word </th>
+    <th>Base </th> 
+    <th>Conv </th>
+  </tr>
+  <tr style="text-align: center">
+    <td><input id="CustomWord" type="text" style="width: 12ex;"> </td>
+    <td><input onblur="NumberCorrect()" type="number" id="CustomBase" min="2" max="36" style="width: 12ex;"> </td>
+    <td><button onclick="_Exec()" style="width: 12ex; "> Convert </button> </td>
+  </tr>
+</table>
+<!------------------------------------------------------------------------------------------------------------------>
+<div class="Box" style="float: left">
+	<div class="titlebox"> Console: </div>
+	<ul style="list-style-type:none">
+		<li id="2Base" onclick="WriteInfo(Word, Base, '2')"></li>
+		<li id="3Base" onclick="WriteInfo(Word, Base, '3')"></li>
+		<li id="4Base" onclick="WriteInfo(Word, Base, '4')"></li>
+		<li id="5Base" onclick="WriteInfo(Word, Base, '5')"></li>
+		<li id="6Base" onclick="WriteInfo(Word, Base, '6')"></li>
+		<li id="7Base" onclick="WriteInfo(Word, Base, '7')"></li>
+		<li id="8Base" onclick="WriteInfo(Word, Base, '8')"></li>
+		<li id="9Base" onclick="WriteInfo(Word, Base, '9')"></li>
+		<li id="10Base" onclick="WriteInfo(Word, Base, '10')"></li>
+		<li id="11Base" onclick="WriteInfo(Word, Base, '11')"></li>
+		<li id="12Base" onclick="WriteInfo(Word, Base, '12')"></li>
+		<li id="13Base" onclick="WriteInfo(Word, Base, '13')"></li>
+		<li id="14Base" onclick="WriteInfo(Word, Base, '14')"></li>
+		<li id="15Base" onclick="WriteInfo(Word, Base, '15')"></li>
+		<li id="16Base" onclick="WriteInfo(Word, Base, '16')"></li>
+		<li id="17Base" onclick="WriteInfo(Word, Base, '17')"></li>
+		<li id="18Base" onclick="WriteInfo(Word, Base, '18')"></li>
+		<li id="19Base" onclick="WriteInfo(Word, Base, '19')"></li>
+		<li id="20Base" onclick="WriteInfo(Word, Base, '20')"></li>
+		<li id="21Base" onclick="WriteInfo(Word, Base, '21')"></li>
+		<li id="22Base" onclick="WriteInfo(Word, Base, '22')"></li>
+		<li id="23Base" onclick="WriteInfo(Word, Base, '23')"></li>
+		<li id="24Base" onclick="WriteInfo(Word, Base, '24')"></li>
+		<li id="25Base" onclick="WriteInfo(Word, Base, '25')"></li>
+		<li id="26Base" onclick="WriteInfo(Word, Base, '26')"></li>
+		<li id="27Base" onclick="WriteInfo(Word, Base, '27')"></li>
+		<li id="28Base" onclick="WriteInfo(Word, Base, '28')"></li>
+		<li id="29Base" onclick="WriteInfo(Word, Base, '29')"></li>
+		<li id="30Base" onclick="WriteInfo(Word, Base, '30')"></li>
+		<li id="31Base" onclick="WriteInfo(Word, Base, '31')"></li>
+		<li id="32Base" onclick="WriteInfo(Word, Base, '32')"></li>
+		<li id="33Base" onclick="WriteInfo(Word, Base, '33')"></li>
+		<li id="34Base" onclick="WriteInfo(Word, Base, '34')"></li>
+		<li id="35Base" onclick="WriteInfo(Word, Base, '35')"></li>
+		<li id="36Base" onclick="WriteInfo(Word, Base, '36')"></li>
+	</ul>
+</div>
+	
+<div class="Box" style="float: right">
+	<div class="titlebox"> Info: </div>
+	<a id="Info"> </a>
+</div>
+<!------------------------------------------------------------------------------------------------------------------>
+<script src="../js/Convertor.js"></script>
+</body>
+</html>

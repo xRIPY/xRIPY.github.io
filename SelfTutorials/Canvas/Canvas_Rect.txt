@@ -1,0 +1,2 @@
+c.fillStyle = "#bb0000";
+c.fillRect(X,Y,Width,Height);

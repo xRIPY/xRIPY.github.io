@@ -1,0 +1,6 @@
+c.beginPath();
+c.arc(X,Y,Radius,0,Math.PI*2,false)
+c.strokeStyle = "#bb0000";
+c.fillStyle = "rgba(180,0,0,0.5)";
+c.stroke();
+c.fill();

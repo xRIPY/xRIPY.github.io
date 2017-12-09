@@ -1,0 +1,22 @@
+body {
+	font-family:monospace
+}
+
+.box
+{
+	margin :1ex;
+	padding: 1ex;
+	width: 47%;
+	height: 88%;
+	border: 1px solid #a9a9a9;
+	overflow: scroll;
+}
+
+.titlebox
+{
+	font-weight: bold;
+	text-align: center;
+	width: 99.3%;
+	height: 3ex;
+	border: 1px solid #a9a9a9;
+}

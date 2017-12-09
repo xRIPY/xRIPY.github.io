@@ -1,0 +1,6 @@
+c.beginPath();
+c.moveTo(X1,Y1);
+c.lineTo(X2,Y2);
+c.lineTo(X3,Y3);
+c.strokeStyle = "#bb0000";
+c.stroke();

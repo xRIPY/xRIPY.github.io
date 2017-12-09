@@ -1,0 +1,13 @@
+function Object(a,b,c){
+	this.a = a;
+	this.b = b;
+	this.c = c;
+
+	this.exec = function(){
+		console.log(this.a,this.b,this.c);
+	}
+
+}
+
+var x = new Object(5,10,15);
+x.exex();
