@@ -1,4 +1,16 @@
 $(function(){	
+
+	var mouse = {
+		x: 0,
+		y: 0
+	}
+	
+	window.addEventListener('mousemove', function(event){
+		mouse.x = event.x;
+		mouse.y = event.y;
+	});
+	
+	//oggetto
 	function Circle(x, y, r, Vx, Vy, a, g, color)
 	{
 		this.x = x;
@@ -31,13 +43,20 @@ $(function(){
 			this.y += Math.ceil(Vy);
 			this.x += Vx;
 			this.draw();
+			
+			//interactivity
+			if( mouse.x - this.x < r && mouse.x - this.x > -r && mouse.y - this.y < r && mouse.y - this.y > -r) {
+				Vy = mouse.y - this.y;
+				Vx = mouse.x - this.x;
+			}
 		}
 	}
-	var C = $('#_canvas');
-	var ball = [];
-	for( var i = 0; i < 5; i++)
+	
+	var C = $('#_canvas'); // canvas
+	var ball = []; // balls
+	for( var i = 0; i < 50; i++) // 15 balls
 	{
-		var r = Math.random()*75+25;
+		var rad = Math.random()*25+10;
 		var x = Math.random()*(window.innerWidth-r*2)+r
 		var y = Math.random()*(window.innerHeight-r*2)+r
 		var vx = (Math.random()-0.5) * 50;
@@ -46,14 +65,16 @@ $(function(){
 		var g = Math.floor(Math.random() * 128)+128
 		var b = Math.floor(Math.random() * 128)+128
 		var rgb = 'rgba('+r+ ', ' +g+ ', ' +b+ ', ' +0.9+ ')';
-		ball[i] = new Circle(x,y,r,vx,vy,0.8,1,rgb);
+		ball[i] = new Circle(x,y,rad,vx,vy,0.8,1,rgb);
 	}	
+	
+	//animate
 	function animate(){
 		requestAnimationFrame(animate);
 		C.attr("width",window.innerWidth).attr("height",window.innerHeight);
 		C.clearCanvas();
 		C.removeLayers();
-		for( var i = 0; i < 5; i++)
+		for( var i = 0; i < 50; i++) // all 15 balls
 		{
 			ball[i].update();
 		}

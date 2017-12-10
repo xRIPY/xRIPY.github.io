@@ -4,7 +4,7 @@ $(function(){
 	canvas.height = window.innerHeight;
 	canvas.width = window.innerWidth;
 	var audio = new Audio('../Miscs/ping.mp3');
-	audio.volume = 0.1;
+	audio.volume = 0.2;
 
 	function Circle(x,y,red,green,blue){
 		this.x = x;
@@ -20,7 +20,7 @@ $(function(){
 				c.arc(x,y,r,0,Math.PI*2,false)
 				c.lineWidth = 15;
 				if(r < 500) { c.lineWidth = r/500; c.strokeStyle = 'rgba('+this.red+','+this.green+','+this.blue+','+r/500+')'; }
-				if(r == 500) { c.lineWidth = r/500; c.strokeStyle = 'rgba('+this.red+','+this.green+','+this.blue+','+r/500+')'; audio.play(); time++}
+				if(r == 500) { c.lineWidth = r/500; c.strokeStyle = 'rgba('+this.red+','+this.green+','+this.blue+','+r/500+')'; audio.play(); time = time + 0.5;}
 				if (r > 500 && r < 750) { c.strokeStyle = 'rgba('+this.red+','+this.green+','+this.blue+','+1/(r-498)+')'; }
 				c.stroke();
 			}
@@ -32,7 +32,7 @@ $(function(){
 		}
 	}
 
-	var time = 0;
+	var time = 0.5;
 	c.textAlign = "center";
 		
 	var circles = [];
@@ -43,13 +43,13 @@ $(function(){
 		var green = Math.floor(Math.random()*128+128);
 		var blue = Math.floor(Math.random()*128+128);
 		circles.push(new Circle(x,y,red,green,blue));
-	}, 1000);
+	}, 1250);
 	
 	var red = Math.floor(Math.random()*128+128);
 	var green = Math.floor(Math.random()*128+128);
 	var blue = Math.floor(Math.random()*128+128);
 	var StartCircle = new Circle(window.innerWidth/2,window.innerHeight/2,red,green,blue)
-	 circles.push(StartCircle);
+	circles.push(StartCircle);
 	
 	function animate(){
 		requestAnimationFrame(animate);
@@ -61,7 +61,7 @@ $(function(){
 		c.font = "30px monospace";
 		c.fillStyle = "#fff";
 		c.fillText(Math.floor(time), canvas.width/2, canvas.height/2+15); 
-		if(time == 0) { c.font = "15px monospace"; c.fillStyle = "#555"; c.fillText("Wait...", canvas.width/2, canvas.height/2+35);  }
+		if(time == 0.5) { c.font = "15px monospace"; c.fillStyle = "#555"; c.fillText("Wait...", canvas.width/2, canvas.height/2+35);  }
 	}
 	animate();
 });
