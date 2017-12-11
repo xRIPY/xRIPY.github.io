@@ -14,33 +14,27 @@ $(function(){
 	var f = 1000;
 	function textCommandPrint()
 	{
-		c.fillText("Up...............Z++", canvas.width-25, canvas.height-200); 
-		c.fillText("Down.............Z--", canvas.width-25, canvas.height-175); 
-		c.fillText("Right............X++", canvas.width-25, canvas.height-150); 
-		c.fillText("Left.............X--", canvas.width-25, canvas.height-125); 
-		c.fillText("Z................Y++", canvas.width-25, canvas.height-100); 
-		c.fillText("C................Y--", canvas.width-25, canvas.height-75); 
-		c.fillText("Q.........Rotation++", canvas.width-25, canvas.height-50); 
-		c.fillText("E.........Rotation--", canvas.width-25, canvas.height-25); 
+		c.fillText("Walk...........WASD", canvas.width-25, canvas.height-125); 
+		c.fillText("Up........Altezza++", canvas.width-25, canvas.height-100); 
+		c.fillText("Down......Altezza--", canvas.width-25, canvas.height-75); 
+		c.fillText("Right....Rotation++", canvas.width-25, canvas.height-50); 
+		c.fillText("Left.....Rotation--", canvas.width-25, canvas.height-25); 
 	}
 	//------------------------------------------------------------------------------------------
 	
 	//----------------------------------------------CUBE-----------------------------------------------------------
-	function Cube(x,y,z)
+	function Cube(x,y,z,color)
 	{
-		this.x = x;
-		this.y = y;
-		this.z = -z;
 		var xp = [];
 		var yp = [];
 		var zp = [];
 		var x3D = [];
 		var y3D = [];
 		xp.push(-10,10,10,-10,-10,10,10,-10);
-		yp.push(110,110,90,90,110,110,90,90);
+		yp.push(10,10,-10,-10,10,10,-10,-10);
 		zp.push(10,10,10,10,-10,-10,-10,-10);
 		this.print = function() {
-			c.strokeStyle = "#16161d";
+			c.strokeStyle = color;
 			for(var i = 0; i < xp.length; i++) {
 				x3D[i] = (((xp[i]-x)*Math.cos(xr)-(yp[i]-y)*Math.sin(xr))*f)/((yp[i]-y)*Math.cos(xr)+(xp[i]-x)*Math.sin(xr));
 				y3D[i] = ((zp[i]-z)*f)/((yp[i]-y)*Math.cos(xr)+(xp[i]-x)*Math.sin(xr));
@@ -79,19 +73,18 @@ $(function(){
 		}
 	}
 	//----------------------------------------------RECTANGLE-----------------------------------------------------------
-	function Rect(x,y,z)
+	function Rect(x,y,z,color)
 	{
-		
 		var xp = [];
 		var yp = [];
 		var zp = [];
 		var x3D = [];
 		var y3D = [];
 		xp.push(-10,10,10,-10,-10,10,10,-10);
-		yp.push(110,110,90,90,110,110,90,90);
+		yp.push(10,10,-10,-10,10,10,-10,-10);
 		zp.push(20,20,20,20,-20,-20,-20,-20);
 		this.print = function() {
-			c.strokeStyle = "#16161d";
+			c.strokeStyle = color;
 			for(var i = 0; i < xp.length; i++) {
 				x3D[i] = (((xp[i]-x)*Math.cos(xr)-(yp[i]-y)*Math.sin(xr))*f)/((yp[i]-y)*Math.cos(xr)+(xp[i]-x)*Math.sin(xr));
 				y3D[i] = ((zp[i]-z)*f)/((yp[i]-y)*Math.cos(xr)+(xp[i]-x)*Math.sin(xr));
@@ -130,19 +123,18 @@ $(function(){
 		}
 	}
 	//----------------------------------------------SLAB-----------------------------------------------------------
-	function Slab(x,y,z)
+	function Slab(x,y,z,color)
 	{
-		
 		var xp = [];
 		var yp = [];
 		var zp = [];
 		var x3D = [];
 		var y3D = [];
 		xp.push(-10,10,10,-10,-10,10,10,-10);
-		yp.push(110,110,90,90,110,110,90,90);
+		yp.push(10,10,-10,-10,10,10,-10,-10);
 		zp.push(5,5,5,5,-5,-5,-5,-5);
 		this.print = function() {
-			c.strokeStyle = "#16161d";
+			c.strokeStyle = color;
 			for(var i = 0; i < xp.length; i++) {
 				x3D[i] = (((xp[i]-x)*Math.cos(xr)-(yp[i]-y)*Math.sin(xr))*f)/((yp[i]-y)*Math.cos(xr)+(xp[i]-x)*Math.sin(xr));
 				y3D[i] = ((zp[i]-z)*f)/((yp[i]-y)*Math.cos(xr)+(xp[i]-x)*Math.sin(xr));
@@ -183,9 +175,27 @@ $(function(){
 	
 	
 	var OBJ = [];
-	OBJ.push(new Cube(0,0,0));
-	OBJ.push(new Rect(25,0,10));
-	OBJ.push(new Slab(-25,0,-5));
+	OBJ.push(new Slab(-25,75,-5,"#f00")); //top
+	OBJ.push(new Cube(0,75,0,"#0f0")); // top
+	OBJ.push(new Rect(25,75,10,"#00f")); //top
+	
+	OBJ.push(new Slab(40,-200,-5,"rgba(255,0,0,1)")); //<3 leftest slab 
+	OBJ.push(new Cube(20,-200,25,"rgba(255,36,0,1)")); //<3 left eye
+	OBJ.push(new Slab(20,-200,-15,"rgba(255,73,0,1)")); //<3 left slab
+	OBJ.push(new Slab(0,-200,-15,"rgba(255,110,0,1)")); //<3 center slab
+	OBJ.push(new Cube(-20,-200,25,"rgba(255,150,0,1)")); //<3 right eye
+	OBJ.push(new Slab(-20,-200,-15,"rgba(255,190,0,1)")); //<3 right slab
+	OBJ.push(new Slab(-40,-200,-5,"rgba(255,255,0,1)")); //<3 rightest slab
+	
+
+	//red rgba(255,0,0,1)
+	//orange rgba(255,165,0,1)
+	//yellow rgba(255,255,0,1)
+	//green rgba(0,255,0,1)
+	//blue rgba(0,0,255,1)
+	//indac rgba(75,0,130,1)
+	//purple rgba(143,0,255,1)
+	
 	
 	function animate(){
 	requestAnimationFrame(animate);
