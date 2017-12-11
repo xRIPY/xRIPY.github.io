@@ -10,7 +10,7 @@ $(function(){
 	c.fillStyle = "#fff";
 	c.textAlign = "right";
 	c.strokeStyle = "#fff";
-	var xr = 0;
+	var xr = Math.PI;
 	var f = 1000;
 	function textCommandPrint()
 	{
@@ -175,9 +175,9 @@ $(function(){
 	
 	
 	var OBJ = [];
-	OBJ.push(new Slab(-25,75,-5,"#f00")); //top
-	OBJ.push(new Cube(0,75,0,"#0f0")); // top
-	OBJ.push(new Rect(25,75,10,"#00f")); //top
+	OBJ.push(new Slab(-25,100,-5,"#f00")); //top
+	OBJ.push(new Cube(0,100,0,"#0f0")); // top
+	OBJ.push(new Rect(25,100,10,"#00f")); //top
 	
 	OBJ.push(new Slab(40,-200,-5,"rgba(255,0,0,1)")); //<3 leftest slab 
 	OBJ.push(new Cube(20,-200,25,"rgba(255,36,0,1)")); //<3 left eye
@@ -186,6 +186,7 @@ $(function(){
 	OBJ.push(new Cube(-20,-200,25,"rgba(255,150,0,1)")); //<3 right eye
 	OBJ.push(new Slab(-20,-200,-15,"rgba(255,190,0,1)")); //<3 right slab
 	OBJ.push(new Slab(-40,-200,-5,"rgba(255,255,0,1)")); //<3 rightest slab
+	
 	
 
 	//red rgba(255,0,0,1)
