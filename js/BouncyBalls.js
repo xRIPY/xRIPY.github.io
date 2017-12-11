@@ -67,7 +67,7 @@ $(function(){
 		var rgb = 'rgba('+r+ ', ' +g+ ', ' +b+ ', ' +0.9+ ')';
 		ball[i] = new Circle(x,y,rad,vx,vy,0.8,1+rad/35,rgb);
 	}	
-	
+	 
 	//animate
 	function animate(){
 		requestAnimationFrame(animate);
