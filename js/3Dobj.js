@@ -1,6 +1,6 @@
 $(function(){
 	
-	//global stuff----------------------------------------------------------------------------
+	//global stuff-----------------------------------------------------------------------------
 	var key = undefined;
 	var canvas = document.querySelector('canvas');
 	var c = canvas.getContext('2d');
