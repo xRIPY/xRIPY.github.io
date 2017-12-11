@@ -7,9 +7,9 @@ $(function(){
 	canvas.height = window.innerHeight;
 	canvas.width = window.innerWidth;
 	c.font = "15px monospace";
-	c.fillStyle = "#16161d";
+	c.fillStyle = "#fff";
 	c.textAlign = "right";
-	c.strokeStyle = "#16161d";
+	c.strokeStyle = "#fff";
 	var xr = 0;
 	var f = 1000;
 	function textCommandPrint()
