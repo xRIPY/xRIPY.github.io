@@ -21,8 +21,8 @@ $(function(){
 	function textCommandPrint()
 	{
 		c.fillText("Click..........ShowDoc", canvas.width-25, canvas.height-200); 
-		c.fillText("BackSpace...Delete OBJ", canvas.width-25, canvas.height-175); 
-		c.fillText("Space.......Create OBJ", canvas.width-25, canvas.height-150); 
+		c.fillText("Canc........Delete OBJ", canvas.width-25, canvas.height-175); 
+		c.fillText("Ins.........Create OBJ", canvas.width-25, canvas.height-150); 
 		c.fillText("Walk..............WASD", canvas.width-25, canvas.height-125); 
 		c.fillText("Up...........Altezza++", canvas.width-25, canvas.height-100); 
 		c.fillText("Down.........Altezza--", canvas.width-25, canvas.height-75); 
@@ -106,8 +106,9 @@ $(function(){
 			case 40: z--; break;									//Up / up
 			case 39: xr += Math.PI/100; break;						//Rotation / right
 			case 37: xr -= Math.PI/100; break;						//Rotation / left
-			case 32: OBJ.push(new Form(x,y,z-1.25,2.5,2.5,2.5,"#FFF")); break;
-			case 8: OBJ.pop(); break;
+			case 45: OBJ.push(new Form(x,y,z-1.25,2.5,2.5,2.5,"#FFF")); break;
+			case 46: OBJ.pop(); break;
 		}
+		console.log(e.which);
 	});	
 });
