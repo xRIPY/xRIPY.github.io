@@ -4,7 +4,6 @@ $(function(){
 	});
 	
 	//global stuff-----------------------------------------------------------------------------
-	var key = undefined;
 	var canvas = document.querySelector('canvas');
 	var c = canvas.getContext('2d');
 	canvas.height = window.innerHeight;
@@ -109,6 +108,5 @@ $(function(){
 			case 45: OBJ.push(new Form(x,y,z-1.25,2.5,2.5,2.5,"#FFF")); break;
 			case 46: OBJ.pop(); break;
 		}
-		console.log(e.which);
 	});	
 });
