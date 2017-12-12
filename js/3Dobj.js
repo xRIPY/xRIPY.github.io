@@ -1,4 +1,7 @@
 $(function(){
+	$('html').on("click",function(){
+		$('#_canvas').fadeToggle(200);
+	});
 	
 	//global stuff-----------------------------------------------------------------------------
 	var key = undefined;
@@ -10,212 +13,101 @@ $(function(){
 	c.fillStyle = "#fff";
 	c.textAlign = "right";
 	c.strokeStyle = "#fff";
-	var xr = Math.PI;
+	var x = 0;
+	var y = 0;
+	var z = 5;
+	var xr = 0;
 	var f = 1000;
 	function textCommandPrint()
 	{
-		c.fillText("Walk...........WASD", canvas.width-25, canvas.height-125); 
-		c.fillText("Up........Altezza++", canvas.width-25, canvas.height-100); 
-		c.fillText("Down......Altezza--", canvas.width-25, canvas.height-75); 
-		c.fillText("Right....Rotation++", canvas.width-25, canvas.height-50); 
-		c.fillText("Left.....Rotation--", canvas.width-25, canvas.height-25); 
+		c.fillText("Click..........ShowDoc", canvas.width-25, canvas.height-200); 
+		c.fillText("BackSpace...Delete OBJ", canvas.width-25, canvas.height-175); 
+		c.fillText("Space.......Create OBJ", canvas.width-25, canvas.height-150); 
+		c.fillText("Walk..............WASD", canvas.width-25, canvas.height-125); 
+		c.fillText("Up...........Altezza++", canvas.width-25, canvas.height-100); 
+		c.fillText("Down.........Altezza--", canvas.width-25, canvas.height-75); 
+		c.fillText("Right.......Rotation++", canvas.width-25, canvas.height-50); 
+		c.fillText("Left........Rotation--", canvas.width-25, canvas.height-25); 
 	}
-	//------------------------------------------------------------------------------------------
 	
-	//----------------------------------------------CUBE-----------------------------------------------------------
-	function Cube(x,y,z,color)
+	//----------------------------------------------FORM-----------------------------------------------------------
+	function Form(xm,ym,zm,xx,yy,zz,color)
 	{
 		var xp = [];
 		var yp = [];
 		var zp = [];
 		var x3D = [];
 		var y3D = [];
-		xp.push(-10,10,10,-10,-10,10,10,-10);
-		yp.push(10,10,-10,-10,10,10,-10,-10);
-		zp.push(10,10,10,10,-10,-10,-10,-10);
+		xp.push(xm-xx/2,xm+xx/2,xm+xx/2,xm-xx/2,xm-xx/2,xm+xx/2,xm+xx/2,xm-xx/2);
+		yp.push(ym+yy/2,ym+yy/2,ym-yy/2,ym-yy/2,ym+yy/2,ym+yy/2,ym-yy/2,ym-yy/2);
+		zp.push(zm+zz,zm+zz,zm+zz,zm+zz,zm,zm,zm,zm);
 		this.print = function() {
 			c.strokeStyle = color;
 			for(var i = 0; i < xp.length; i++) {
-				x3D[i] = (((xp[i]-x)*Math.cos(xr)-(yp[i]-y)*Math.sin(xr))*f)/((yp[i]-y)*Math.cos(xr)+(xp[i]-x)*Math.sin(xr));
-				y3D[i] = ((zp[i]-z)*f)/((yp[i]-y)*Math.cos(xr)+(xp[i]-x)*Math.sin(xr));
+				x3D[i] = (((xp[i]-x)*Math.cos(xr)-(yp[i]-y)*Math.sin(xr))*f)/((yp[i]-y)*Math.cos(xr)+(xp[i]-x)*Math.sin(xr)) +innerWidth/2;
+				y3D[i] = ((-zp[i]+z)*f)/((yp[i]-y)*Math.cos(xr)+(xp[i]-x)*Math.sin(xr)) + innerHeight/2;
 				if (((yp[i]-y)*Math.cos(xr)+(xp[i]-x)*Math.sin(xr)) < 0) {c.strokeStyle = "rgba(0,0,0,0)";}
 			}
 			c.beginPath();
-			c.moveTo(x3D[0]+innerWidth/2,y3D[0]+innerHeight/2);
-			c.lineTo(x3D[1]+innerWidth/2,y3D[1]+innerHeight/2);
-			c.lineTo(x3D[2]+innerWidth/2,y3D[2]+innerHeight/2);
-			c.lineTo(x3D[3]+innerWidth/2,y3D[3]+innerHeight/2);
-			c.lineTo(x3D[0]+innerWidth/2,y3D[0]+innerHeight/2);
-			c.lineTo(x3D[4]+innerWidth/2,y3D[4]+innerHeight/2);
-			c.lineTo(x3D[5]+innerWidth/2,y3D[5]+innerHeight/2);
-			c.lineTo(x3D[6]+innerWidth/2,y3D[6]+innerHeight/2);
-			c.lineTo(x3D[7]+innerWidth/2,y3D[7]+innerHeight/2);
-			c.lineTo(x3D[8]+innerWidth/2,y3D[8]+innerHeight/2);
-			c.lineTo(x3D[4]+innerWidth/2,y3D[4]+innerHeight/2);
-			c.moveTo(x3D[3]+innerWidth/2,y3D[3]+innerHeight/2);
-			c.lineTo(x3D[7]+innerWidth/2,y3D[7]+innerHeight/2);
-			c.moveTo(x3D[2]+innerWidth/2,y3D[2]+innerHeight/2);
-			c.lineTo(x3D[6]+innerWidth/2,y3D[6]+innerHeight/2);
-			c.moveTo(x3D[1]+innerWidth/2,y3D[1]+innerHeight/2);
-			c.lineTo(x3D[5]+innerWidth/2,y3D[5]+innerHeight/2);
-			c.moveTo(x3D[0]+innerWidth/2,y3D[0]+innerHeight/2);
+			c.moveTo(x3D[0],y3D[0]);
+			c.lineTo(x3D[1],y3D[1]);
+			c.lineTo(x3D[2],y3D[2]);
+			c.lineTo(x3D[3],y3D[3]);
+			c.lineTo(x3D[0],y3D[0]);
+			c.lineTo(x3D[4],y3D[4]);
+			c.lineTo(x3D[5],y3D[5]);
+			c.lineTo(x3D[6],y3D[6]);
+			c.lineTo(x3D[7],y3D[7]);
+			c.lineTo(x3D[8],y3D[8]);
+			c.lineTo(x3D[4],y3D[4]);
+			c.moveTo(x3D[3],y3D[3]);
+			c.lineTo(x3D[7],y3D[7]);
+			c.moveTo(x3D[2],y3D[2]);
+			c.lineTo(x3D[6],y3D[6]);
+			c.moveTo(x3D[1],y3D[1]);
+			c.lineTo(x3D[5],y3D[5]);
+			c.moveTo(x3D[0],y3D[0]);
 			c.stroke();
 		}
-		this.move = function(){
-			if(key == "65") 	 {x = x-Math.cos(xr); y = y+Math.sin(xr);}
-			else if(key == "38") {z--;}
-			else if(key == "68") {x = x+Math.cos(xr); y = y-Math.sin(xr);}
-			else if(key == "40") {z++;}
-			else if(key == "83") {y = y-Math.cos(xr); x = x-Math.sin(xr);}
-			else if(key == "87") {y = y+Math.cos(xr); x = x+Math.sin(xr);}
-			else if(key == "39") {xr += Math.PI/300;}
-			else if(key == "37") {xr -= Math.PI/300;}
-		}
 	}
-	//----------------------------------------------RECTANGLE-----------------------------------------------------------
-	function Rect(x,y,z,color)
-	{
-		var xp = [];
-		var yp = [];
-		var zp = [];
-		var x3D = [];
-		var y3D = [];
-		xp.push(-10,10,10,-10,-10,10,10,-10);
-		yp.push(10,10,-10,-10,10,10,-10,-10);
-		zp.push(20,20,20,20,-20,-20,-20,-20);
-		this.print = function() {
-			c.strokeStyle = color;
-			for(var i = 0; i < xp.length; i++) {
-				x3D[i] = (((xp[i]-x)*Math.cos(xr)-(yp[i]-y)*Math.sin(xr))*f)/((yp[i]-y)*Math.cos(xr)+(xp[i]-x)*Math.sin(xr));
-				y3D[i] = ((zp[i]-z)*f)/((yp[i]-y)*Math.cos(xr)+(xp[i]-x)*Math.sin(xr));
-				if (((yp[i]-y)*Math.cos(xr)+(xp[i]-x)*Math.sin(xr)) < 0) {c.strokeStyle = "rgba(0,0,0,0)";}
-			}
-			c.beginPath();
-			c.moveTo(x3D[0]+innerWidth/2,y3D[0]+innerHeight/2);
-			c.lineTo(x3D[1]+innerWidth/2,y3D[1]+innerHeight/2);
-			c.lineTo(x3D[2]+innerWidth/2,y3D[2]+innerHeight/2);
-			c.lineTo(x3D[3]+innerWidth/2,y3D[3]+innerHeight/2);
-			c.lineTo(x3D[0]+innerWidth/2,y3D[0]+innerHeight/2);
-			c.lineTo(x3D[4]+innerWidth/2,y3D[4]+innerHeight/2);
-			c.lineTo(x3D[5]+innerWidth/2,y3D[5]+innerHeight/2);
-			c.lineTo(x3D[6]+innerWidth/2,y3D[6]+innerHeight/2);
-			c.lineTo(x3D[7]+innerWidth/2,y3D[7]+innerHeight/2);
-			c.lineTo(x3D[8]+innerWidth/2,y3D[8]+innerHeight/2);
-			c.lineTo(x3D[4]+innerWidth/2,y3D[4]+innerHeight/2);
-			c.moveTo(x3D[3]+innerWidth/2,y3D[3]+innerHeight/2);
-			c.lineTo(x3D[7]+innerWidth/2,y3D[7]+innerHeight/2);
-			c.moveTo(x3D[2]+innerWidth/2,y3D[2]+innerHeight/2);
-			c.lineTo(x3D[6]+innerWidth/2,y3D[6]+innerHeight/2);
-			c.moveTo(x3D[1]+innerWidth/2,y3D[1]+innerHeight/2);
-			c.lineTo(x3D[5]+innerWidth/2,y3D[5]+innerHeight/2);
-			c.moveTo(x3D[0]+innerWidth/2,y3D[0]+innerHeight/2);
-			c.stroke();
-		}
-		this.move = function(){
-			if(key == "65") 	 {x = x-Math.cos(xr); y = y+Math.sin(xr);}
-			else if(key == "38") {z--;}
-			else if(key == "68") {x = x+Math.cos(xr); y = y-Math.sin(xr);}
-			else if(key == "40") {z++;}
-			else if(key == "83") {y = y-Math.cos(xr); x = x-Math.sin(xr);}
-			else if(key == "87") {y = y+Math.cos(xr); x = x+Math.sin(xr);}
-			else if(key == "39") {xr += Math.PI/300;}
-			else if(key == "37") {xr -= Math.PI/300;}
-		}
-	}
-	//----------------------------------------------SLAB-----------------------------------------------------------
-	function Slab(x,y,z,color)
-	{
-		var xp = [];
-		var yp = [];
-		var zp = [];
-		var x3D = [];
-		var y3D = [];
-		xp.push(-10,10,10,-10,-10,10,10,-10);
-		yp.push(10,10,-10,-10,10,10,-10,-10);
-		zp.push(5,5,5,5,-5,-5,-5,-5);
-		this.print = function() {
-			c.strokeStyle = color;
-			for(var i = 0; i < xp.length; i++) {
-				x3D[i] = (((xp[i]-x)*Math.cos(xr)-(yp[i]-y)*Math.sin(xr))*f)/((yp[i]-y)*Math.cos(xr)+(xp[i]-x)*Math.sin(xr));
-				y3D[i] = ((zp[i]-z)*f)/((yp[i]-y)*Math.cos(xr)+(xp[i]-x)*Math.sin(xr));
-				if (((yp[i]-y)*Math.cos(xr)+(xp[i]-x)*Math.sin(xr)) < 0) {c.strokeStyle = "rgba(0,0,0,0)";}
-			}
-			c.beginPath();
-			c.moveTo(x3D[0]+innerWidth/2,y3D[0]+innerHeight/2);
-			c.lineTo(x3D[1]+innerWidth/2,y3D[1]+innerHeight/2);
-			c.lineTo(x3D[2]+innerWidth/2,y3D[2]+innerHeight/2);
-			c.lineTo(x3D[3]+innerWidth/2,y3D[3]+innerHeight/2);
-			c.lineTo(x3D[0]+innerWidth/2,y3D[0]+innerHeight/2);
-			c.lineTo(x3D[4]+innerWidth/2,y3D[4]+innerHeight/2);
-			c.lineTo(x3D[5]+innerWidth/2,y3D[5]+innerHeight/2);
-			c.lineTo(x3D[6]+innerWidth/2,y3D[6]+innerHeight/2);
-			c.lineTo(x3D[7]+innerWidth/2,y3D[7]+innerHeight/2);
-			c.lineTo(x3D[8]+innerWidth/2,y3D[8]+innerHeight/2);
-			c.lineTo(x3D[4]+innerWidth/2,y3D[4]+innerHeight/2);
-			c.moveTo(x3D[3]+innerWidth/2,y3D[3]+innerHeight/2);
-			c.lineTo(x3D[7]+innerWidth/2,y3D[7]+innerHeight/2);
-			c.moveTo(x3D[2]+innerWidth/2,y3D[2]+innerHeight/2);
-			c.lineTo(x3D[6]+innerWidth/2,y3D[6]+innerHeight/2);
-			c.moveTo(x3D[1]+innerWidth/2,y3D[1]+innerHeight/2);
-			c.lineTo(x3D[5]+innerWidth/2,y3D[5]+innerHeight/2);
-			c.moveTo(x3D[0]+innerWidth/2,y3D[0]+innerHeight/2);
-			c.stroke();
-		}
-		this.move = function(){
-			if(key == "65") 	 {x = x-Math.cos(xr); y = y+Math.sin(xr);}
-			else if(key == "38") {z--;}
-			else if(key == "68") {x = x+Math.cos(xr); y = y-Math.sin(xr);}
-			else if(key == "40") {z++;}
-			else if(key == "83") {y = y-Math.cos(xr); x = x-Math.sin(xr);}
-			else if(key == "87") {y = y+Math.cos(xr); x = x+Math.sin(xr);}
-			else if(key == "39") {xr += Math.PI/300;}
-			else if(key == "37") {xr -= Math.PI/300;}
-		}
-	}
-	
-	
-	var OBJ = [];
-	OBJ.push(new Slab(-25,100,-5,"#f00")); //top
-	OBJ.push(new Cube(0,100,0,"#0f0")); // top
-	OBJ.push(new Rect(25,100,10,"#00f")); //top
-	
-	OBJ.push(new Slab(40,-200,-5,"rgba(255,0,0,1)")); //<3 leftest slab 
-	OBJ.push(new Cube(20,-200,25,"rgba(255,36,0,1)")); //<3 left eye
-	OBJ.push(new Slab(20,-200,-15,"rgba(255,73,0,1)")); //<3 left slab
-	OBJ.push(new Slab(0,-200,-15,"rgba(255,110,0,1)")); //<3 center slab
-	OBJ.push(new Cube(-20,-200,25,"rgba(255,150,0,1)")); //<3 right eye
-	OBJ.push(new Slab(-20,-200,-15,"rgba(255,190,0,1)")); //<3 right slab
-	OBJ.push(new Slab(-40,-200,-5,"rgba(255,255,0,1)")); //<3 rightest slab
-	
-	
 
-	//red rgba(255,0,0,1)
-	//orange rgba(255,165,0,1)
-	//yellow rgba(255,255,0,1)
-	//green rgba(0,255,0,1)
-	//blue rgba(0,0,255,1)
-	//indac rgba(75,0,130,1)
-	//purple rgba(143,0,255,1)
+	//objs
+	var OBJ = [];
+	OBJ.push(new Form(0,50,0,10,10,10,"#f60")); //center box				4
+	OBJ.push(new Form(12.5,50,0,7.5,7.5,7.5,"#f80")); //right box			5
+	OBJ.push(new Form(-12.5,50,0,7.5,7.5,7.5,"#f40")); //left box			3
+	OBJ.push(new Form(25,50,0,5,5,5,"#fc0")); //righter box 				7
+	OBJ.push(new Form(-25,50,0,5,5,5,"#f00")); //lefter box					1
+	OBJ.push(new Form(39,100,0,2.5,2.5,25,"#fa0")); //tower behind left		6
+	OBJ.push(new Form(-39,100,0,2.5,2.5,25,"#f20")); //tower behind right	2
+	OBJ.push(new Form(12.5,-25,-5,2.5,2.5,2.5,"#f00")); // behind you box right	
+	OBJ.push(new Form(0,-25,0,2.5,2.5,2.5,"#0f0")); // behind you box center	
+	OBJ.push(new Form(-12.5,-25,5,2.5,2.5,2.5,"#00f")); // behind you box left	
 	
-	
-	function animate(){
-	requestAnimationFrame(animate);
-	c.clearRect(0,0,innerWidth,innerHeight);
-	
-	textCommandPrint();
-	
-	for(var i = 0; i < OBJ.length; i++){
-		OBJ[i].print();
-	}
-		
+	//cycle
+	function animate()
+	{
+		requestAnimationFrame(animate);
+		c.clearRect(0,0,innerWidth,innerHeight);
+		textCommandPrint();
+		for(var i = 0; i < OBJ.length; i++) {OBJ[i].print();}	
 	}
 	animate();
 	
+	// movement
 	$(document).keydown(function(e){
-		key = e.which;
-		for(var i = 0; i < OBJ.length; i++){
-			OBJ[i].move();
+		switch(e.which)
+		{
+			case 65: x = x-Math.cos(xr); y = y+Math.sin(xr); break; //A / left
+			case 68: x = x+Math.cos(xr); y = y-Math.sin(xr); break; //D / right
+			case 87: y = y+Math.cos(xr); x = x+Math.sin(xr); break; //W / front
+			case 83: y = y-Math.cos(xr); x = x-Math.sin(xr); break; //S / behind
+			case 38: z++; break;									//Down / down
+			case 40: z--; break;									//Up / up
+			case 39: xr += Math.PI/100; break;						//Rotation / right
+			case 37: xr -= Math.PI/100; break;						//Rotation / left
+			case 32: OBJ.push(new Form(x,y,z-1.25,2.5,2.5,2.5,"#FFF")); break;
+			case 8: OBJ.pop(); break;
 		}
-	});
-	
+	});	
 });
