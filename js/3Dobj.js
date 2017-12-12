@@ -1,6 +1,14 @@
 $(function(){
 	$('html').on("click",function(){
-		$('#_canvas').fadeToggle(200);
+		$('#_canvas').fadeToggle(400);
+	});
+	
+	$("img:not(:first)").hide();
+	$('.slide').width(window.innerWidth - 50);
+
+	$('.slide').on("click",function(){
+		$(this).next('img').slideToggle(200);
+		$('#_canvas').fadeToggle(0);
 	});
 	
 	//global stuff-----------------------------------------------------------------------------

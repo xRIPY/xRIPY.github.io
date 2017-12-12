@@ -2,15 +2,30 @@
    margin: 0;
    padding: 0;
    font-family: monospace;
-   font-size: 110%;
+   font-size: 105%;
 }
 
 canvas {
 	position:fixed;
+	background-color: rgba(255,255,255,0.9);
+	z-index:1;
 }
 
+
 div {
+	width:98%;
+	position:absolute;
 	margin:5px;
 	padding:5px;
-	
+	z-index:0;
+}
+
+.slide{
+	background-color: #cccccc;
+	width: 50px;
+	text-align: center;
+}
+
+span {
+	font-size: 50%;
 }
