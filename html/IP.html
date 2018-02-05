@@ -1,0 +1,45 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../css/IP.css">
+<!---------------------------------------------HEAD------------------------------------------------>
+<title> IP </title>
+<!------------------------------------------------------------------------------------------------->
+</head>
+<body>
+<!---------------------------------------------BODY------------------------------------------------>
+
+<p>INDIRIZZO DI RETE</p>
+<input id="IP"></input>
+<input id="NETID" type="number" max=31 min=1></input>
+<select id="SMtype"> 
+	<option>FLSM</option>
+	<option>VLSM</option>
+</select>
+
+<button id="start">click</button>
+<br /> <br />
+
+<p> N. HOST </p>
+<div id="Nhost">
+</div>
+
+<p> COMMENTS <p>
+<textarea></textarea> <br />
+
+<p> TABLE <p>
+<table>
+<tr>
+<th>SOTTORETE</th>
+<th>INDIRIZZO RETE</th>
+<th>SUBNET MASK</th>
+<th>BROADCAST</th>
+<th>N. HOST</th>
+<th>RANGE DI HOST</th>
+</tr>
+</table>
+
+<!------------------------------------------------------------------------------------------------->
+<script src="../Demo/jquery.min.js"></script>
+<script src="../js/IP.js"></script>
+</body>
+</html>
