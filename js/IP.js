@@ -135,7 +135,7 @@ $(function(){
 		IP_B_s = IP_B[0] + IP_B[1] + IP_B[2] + IP_B[3];
 		
 		BN = [];
-		for(var i = 0; i < NHOST.length; i++) { BN.push( (+NHOST[i]).toString(2).length );}
+		for(var i = 0; i < NHOST.length; i++) { BN.push( (+NHOST[i] + 1).toString(2).length );}
 		
 		var texts = "IP: " + IP_B[0] +'.'+ IP_B[1] +'.'+ IP_B[2] +'.'+ IP_B[3];
 		TB.html(texts + "\n"); 
@@ -156,6 +156,7 @@ $(function(){
 				var d;
 				var ca = [];
 				var da = [];
+				
 				
 				for(var i = 0; i < Math.pow(2, 32-(Number(BN[0])+Number(NETID))); i++)
 				{
