@@ -1,30 +1,65 @@
-<html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-y = <input id="y" placeholder="Enter function in x"> <br>
-n = <input type="number" id="n" placeholder="Enter a number n"> <br> 
-b = <input type="number" id="b" placeholder="Enter an extreme b"> <br> 
-a = <input type="number" id="a" placeholder="Enter an extreme a"> <br> 
-<button id="elaborate">Elaborate</button> <br> <br>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="../css/math.css">
+	
+    <title>Math</title>
+	
+	
+  </head>
+  <body>
+  
+	<header>Integrazione Numerica</header>
+	
+	<div class="container">
+		<div class="row">
+			<div class="offset-md-1 col-sm-10">
+				<table>
+				
+					<tr><td><div>$$y =$$</div></td> <td><input id="y" placeholder="Enter function in x"></td></tr>
+					<tr><td><div>$$n =$$</div></td> <td><input type="number" id="n" placeholder="Enter a number n"></td></tr>
+					<tr><td><div>$$b =$$</div></td> <td><input type="number" id="b" placeholder="Enter an extreme b"></td></tr>
+					<tr><td><div>$$a =$$</div></td> <td><input type="number" id="a" placeholder="Enter an extreme a"></td></tr>
+					
+					
+				</table>
+			</div>
+		</div>
+		
+		<div class="row">
+		<button class="btn btn-danger" id="elaborate" style="width:100%">Elaborate</button>
+		</div>
+		
+		<br>
+				<div id="pretty">$$$$</div>
+		<br>
 
-<textarea id="output">
-</textarea>
-
-<br>
-<br>
-<br>
-
-<h1> RECTANGLE (LEFT / RIGHT) </h1>
-<img src="../resources/left+right.jpg" alt="rect" width="1000px" height="400px"></img>
-<h1> RECTANGLE </h1>
-<img src="../resources/rect.jpg" alt="rect" width="500px" height="300px"></img>
-<h1> TRAPEZIO </h1>
-<img src="../resources/trapezzi.png" alt="rect" width="500px" height="300px"></img>
-<img src="../resources/trape.png" alt="rect" ></img>
-<h1> PARABOLE </h1>
-<img src="../resources/parab.jpg" alt="rect" width="500px" height="500px"></img>
-<img src="../resources/simpson.png" alt="rect" ></img>
-
-<script src="../Demo/jquery.min.js"> </script>
-<script src="../Demo/math.js"> </script>
-<script src="../js/math.js"></script>
+		<div class="row">
+		
+			<div id="graphicStuffs">
+				<table>
+					
+						<tr><td><header>Rectangle</header></td> <td><p class="answer" id="Rectangle"></p></td></tr>
+						<tr><td><header>Trapezoidal</header></td> <td><p class="answer" id="Trapezoidal"></p></td></tr>
+						<tr><td><header>Parable</header></td> <td><p class="answer" id="Parable"></p></td></tr>
+						
+				</table>
+			</div>
+		</div>
+			
+	</div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../Demo/jquery.min.js"> </script>
+	<script src="../Demo/math.js"> </script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML.js"></script>
+	<script src="../js/math.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
 </html>
