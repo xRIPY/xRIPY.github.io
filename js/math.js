@@ -14,6 +14,33 @@ function Pretty(){
 	}
 }
 
+function draw() {
+    try {
+      // compile the expression once
+      const expression = document.getElementById('eq').value
+      const expr = math.compile(expression)
+
+      // evaluate the expression repeatedly for different values of x
+      const xValues = math.range(-10, 10, 0.5).toArray()
+      const yValues = xValues.map(function (x) {
+        return expr.eval({x: x})
+      })
+
+      // render the plot using plotly
+      const trace1 = {
+        x: xValues,
+        y: yValues,
+        type: 'scatter'
+      }
+      const data = [trace1]
+      Plotly.newPlot('plot', data)
+    }
+    catch (err) {
+      console.error(err)
+      alert(err)
+    }
+  }
+
 $(function(){
 
 	$('input').on('input', function() { 
@@ -21,7 +48,9 @@ $(function(){
 	});
 
 	$("#elaborate").on("click",function(){
-	
+		
+	try{
+
 		//
 		// VARIABLES
 		//
@@ -44,21 +73,15 @@ $(function(){
 		//
 		// Rectangle
 		//
-		try{
-			
 			for (i = (_a + (deltax/2) ); i <= _b; i += deltax) { 
 				_x = {x:i};
 				Result_Rectangle += math.eval( _y, _x );
 			}
 			Result_Rectangle = math.eval( "(" + Result_Rectangle + " * " + deltax + ") / 1" );
 			
-		} catch(e) { $("#output").text("Error in rect"); return;}
-		
 		//
 		// Trapezoidal
 		//
-		try{
-			
 			var times = 0;
 			for (i = _a; i <= _b; i += deltax) { 
 				_x = {x:i};
@@ -68,14 +91,9 @@ $(function(){
 			}
 			Result_Trapezoidal = math.eval( "(" + Result_Trapezoidal + " * " + deltax + ") / 2" );
 			
-		} catch(e) { $("#output").text("Error in trap"); return;}
-		
-		
 		//
 		// Parable
 		//
-		try{
-			
 			var times = 0;
 			for (i = _a; i <= _b; i += deltax) { 
 				_x = {x:i};
@@ -86,7 +104,7 @@ $(function(){
 			}
 			Result_Parable = math.eval( "(" + Result_Parable + " * " + deltax + ") / 3" );
 			
-		} catch(e) { $("#output").text("Error in para"); return;}
+		} catch(e) { alert(e); return;}
 		
 		//
 		// output text
@@ -95,8 +113,21 @@ $(function(){
 		$("#Rectangle").text(Result_Rectangle);
 		$("#Trapezoidal").text(Result_Trapezoidal);
 		$("#Parable").text(Result_Parable);
+	
+	});
+
+	$('input').on('input', function() { 
+		Pretty();
+	});
+	
+	$('.info').on('click', function() { 
 		
-		});
+	});
 	
 });
 
+function setup() {
+}
+
+function draw() {
+}
