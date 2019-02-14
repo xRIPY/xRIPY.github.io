@@ -19,7 +19,6 @@ header:hover{
 }
 
 input{
-	width:50ex;
 	border: 1px solid rgba(0,0,0,0);
 	border-bottom: 1px solid #dc3545;
 }
@@ -33,4 +32,12 @@ input:hover{
 	width:100%;
 	font-size: 200%;
 	font-family: consolas;
+}
+
+#myContainer{
+	text-align: center;
+}
+
+#myContainer canvas{
+	border: 1px solid #dc3545;
 }

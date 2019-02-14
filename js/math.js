@@ -1,7 +1,20 @@
+//
+// globals
+//
+var _n;
+var _y;
+var _a;
+var _b;
+//p5
+var _width = 950;
+var _height = 540;
+var zoom = Number($("#zoom").val());
+var graphic = Number($("#graphic").val());
+
 function Pretty(){
 	try {
-			var _a = $("#a").val() == "" ? "a" : $("#a").val() ;
-			var _b = $("#b").val() == "" ? "b" : $("#b").val() ;
+			_a = $("#a").val() == "" ? "a" : $("#a").val() ;
+			_b = $("#b").val() == "" ? "b" : $("#b").val() ;
 			let node = math.parse("(" + $("#y").val() + ")");
 			var latex = node ? node.toTex({parenthesis: 'keep', implicit: 'hide'}) : '';
 			latex =  "\\int_{"+ _a +"}^{"+ _b +"} " + latex + "dx";
@@ -14,39 +27,20 @@ function Pretty(){
 	}
 }
 
-function draw() {
-    try {
-      // compile the expression once
-      const expression = document.getElementById('eq').value
-      const expr = math.compile(expression)
-
-      // evaluate the expression repeatedly for different values of x
-      const xValues = math.range(-10, 10, 0.5).toArray()
-      const yValues = xValues.map(function (x) {
-        return expr.eval({x: x})
-      })
-
-      // render the plot using plotly
-      const trace1 = {
-        x: xValues,
-        y: yValues,
-        type: 'scatter'
-      }
-      const data = [trace1]
-      Plotly.newPlot('plot', data)
-    }
-    catch (err) {
-      console.error(err)
-      alert(err)
-    }
-  }
-
 $(function(){
 
-	$('input').on('input', function() { 
+	$('#var input').on('input', function() {
 		Pretty();
 	});
-
+	
+	$("#setting input").on('input', function(){
+		graphic = Number($("#graphic").val());
+		zoom = Number($("#zoom").val());
+		clear();
+		grid();
+		fDraw();
+	});
+	
 	$("#elaborate").on("click",function(){
 		
 	try{
@@ -55,10 +49,10 @@ $(function(){
 		// VARIABLES
 		//
 		let _x;
-		var _n = Number($("#n").val());
-		var _y = $("#y").val();
-		var _a = Number($("#a").val()) + 0.00000000000000000000000001;
-		var _b = Number($("#b").val()) + 0.00000000000000000000000001;
+		_n = Number($("#n").val());
+		_y = $("#y").val();
+		_a = Number($("#a").val()) + 0.00000000000000000000000001;
+		_b = Number($("#b").val()) + 0.00000000000000000000000001;
 		if(_a > _b) { _b = [_a, _a = _b][0]; }
 		var Result_Rectangle = 0;
 		var Result_Trapezoidal = 0;
@@ -106,13 +100,21 @@ $(function(){
 			
 		} catch(e) { alert(e); return;}
 		
+		_a = Number($("#a").val());
+		_b = Number($("#b").val());
 		//
 		// output text
 		//
-		Pretty();
 		$("#Rectangle").text(Result_Rectangle);
 		$("#Trapezoidal").text(Result_Trapezoidal);
 		$("#Parable").text(Result_Parable);
+		
+		//
+		// canvas
+		//
+		clear();
+		grid();
+		fDraw();
 	
 	});
 
@@ -126,8 +128,59 @@ $(function(){
 	
 });
 
+//
+// p5.js
+//
+
 function setup() {
+	
+	var cnv = createCanvas(_width, _height);
+	cnv.parent('myContainer');
+	translate(width / 2, height / 2);
+	grid();
+	
 }
 
 function draw() {
+	noStroke();
+	fill(255);
+	rect(_width - 52.5, _height - 22.5, 45, 15);
+	fill(255,0,0);
+	text(Math.ceil(frameRate()) + ' FPS', _width - 50, _height - 10);
+	translate(width / 2, height / 2);
+}
+
+function grid(){
+	stroke(225);
+	
+	for(var i = (0-_width); i < (_width); i += 1){
+		line(i*zoom, (0-_height/2), i*zoom, (_height/2));
+		line((0-width/2), i*zoom, (width/2), i*zoom);
+	}
+	
+	//axis
+	stroke(255,0,0);
+	
+	line(0-_width/2, 0, _width/2, 0);
+	line(0, 0-_height/2, 0, _height/2);
+}
+
+function fDraw(){
+	let _x_1;
+	let _x_2;
+	var g = graphic;
+	var half_g = (graphic/2);
+	
+	stroke(0);
+	
+	_x_1 = {x:(0-_width)};
+	for(var i = (0-_width); i < (_width); i += g){
+		_x_2 = {x:i+half_g};
+		line(_x_1.x*zoom, -Number(math.eval( _y, _x_1 ))*zoom,_x_2.x*zoom, -Number(math.eval( _y, _x_2 ))*zoom);
+		_x_1 = _x_2;
+	}
+	
+	stroke(255,0,0,25);
+	fill(255, 0, 0, 10);
+	rect(_a*zoom, (0-_height/2)-0.5, (_b - _a)*zoom, (_height));
 }

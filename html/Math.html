@@ -20,7 +20,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="offset-md-1 col-sm-10">
-				<table>
+				<table id="var">
 				
 					<tr><td><div>$$y =$$</div></td> <td><input id="y" placeholder="Enter function in x"></td></tr>
 					<tr><td><div>$$n =$$</div></td> <td><input type="number" id="n" placeholder="Enter a number n"></td></tr>
@@ -52,8 +52,13 @@
 		</div>
 		
 		<hr>
-		
-		<canvas id="defaultCanvas0" class="p5Canvas"></canvas>
+		<table id="setting">
+				
+					<tr><td><div>$$Zoom:$$</div></td> <td><input id="zoom" type="number" value="25" step="5" min="1"></input></td></tr>
+					<tr><td><div>$$Graphic:$$</div></td> <td><input  id="graphic" type="number" value="0.2" step="0.1" min="0.2" max="2"></input></td></tr>
+		</table>
+		<div id="myContainer">
+		</div>
 			
 	</div>
     <!-- Optional JavaScript -->
@@ -63,6 +68,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML.js"></script>
 	<script src="../js/math.js"></script>
 	<script src="../Demo/p5.min.js"> </script>
+	<script src="../Demo/p5.dom.min.js"> </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
