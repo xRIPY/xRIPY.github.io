@@ -27,6 +27,21 @@ function Pretty(){
 	}
 }
 
+function refresh(){
+	clear();
+	grid();
+	fDraw();
+	if( $("#RectangleCB").is(":checked") ){
+		Rectangle();
+	}
+	if( $("#TrapezoidalCB").is(":checked") ){
+		Trapezoidal();
+	}
+	if( $("#ParableCB").is(":checked") ){
+		Parable();
+	}
+}
+
 $(function(){
 
 	$('#var input').on('input', function() {
@@ -36,9 +51,11 @@ $(function(){
 	$("#setting input").on('input', function(){
 		graphic = Number($("#graphic").val());
 		zoom = Number($("#zoom").val());
-		clear();
-		grid();
-		fDraw();
+		refresh();
+	});
+	
+	$("#extra input").on('input', function(){
+		refresh();
 	});
 	
 	$("#elaborate").on("click",function(){
@@ -112,18 +129,12 @@ $(function(){
 		//
 		// canvas
 		//
-		clear();
-		grid();
-		fDraw();
+		refresh();
 	
 	});
 
 	$('input').on('input', function() { 
 		Pretty();
-	});
-	
-	$('.info').on('click', function() { 
-		
 	});
 	
 });
@@ -183,4 +194,33 @@ function fDraw(){
 	stroke(255,0,0,25);
 	fill(255, 0, 0, 10);
 	rect(_a*zoom, (0-_height/2)-0.5, (_b - _a)*zoom, (_height));
+}
+
+function Rectangle(){
+	
+	
+	if(_a > _b) { _b = [_a, _a = _b][0]; }
+	
+	let scope = {a:Number(_a), b:Number(_b), n:Number(_n)}
+	var deltax = Number(math.eval("(b - a)/n " , scope));
+	var half_deltax =  Number(deltax/2);
+	
+	
+	stroke(255,200,80);
+	fill(255, 200, 80, 45);
+	let _x;
+	for(var i = Number(_a) + half_deltax; i <= Number(_b); i += Number(deltax)){
+		_x = {x:i};
+		var mat = -Number(math.eval( _y, _x ));
+		line(i*zoom, 0, i*zoom, mat*zoom);
+		rect((i-half_deltax)*zoom, 0, deltax*zoom, (mat*zoom)); 
+	}
+}
+
+function Trapezoidal(){
+	
+}
+
+function Parable(){
+	
 }
