@@ -6,8 +6,8 @@ var _y;
 var _a;
 var _b;
 //p5
-var _width = 950;
-var _height = 540;
+var _width = window.innerWidth - 25;
+var _height = window.innerHeight - 50;
 var zoom = Number($("#zoom").val());
 var graphic = Number($("#graphic").val());
 
@@ -30,7 +30,7 @@ function Pretty(){
 function refresh(){
 	clear();
 	grid();
-	fDraw();
+	
 	if( $("#RectangleCB").is(":checked") ){
 		Rectangle();
 	}
@@ -40,6 +40,8 @@ function refresh(){
 	if( $("#ParableCB").is(":checked") ){
 		Parable();
 	}
+	
+	fDraw();
 }
 
 $(function(){
@@ -49,7 +51,7 @@ $(function(){
 	});
 	
 	$("#setting input").on('input', function(){
-		graphic = Number($("#graphic").val());
+		graphic = Number($("#graphic").val()) != 0.11 ? Number($("#graphic").val()) : 999;
 		zoom = Number($("#zoom").val());
 		refresh();
 	});
@@ -66,10 +68,10 @@ $(function(){
 		// VARIABLES
 		//
 		let _x;
-		_n = Number($("#n").val());
+		_n = Math.abs(Number($("#n").val()));
 		_y = $("#y").val();
 		_a = Number($("#a").val()) + 0.00000000000000000000000001;
-		_b = Number($("#b").val()) + 0.00000000000000000000000001;
+		_b = Number($("#b").val()) - 0.00000000000000000000000001;
 		if(_a > _b) { _b = [_a, _a = _b][0]; }
 		var Result_Rectangle = 0;
 		var Result_Trapezoidal = 0;
@@ -80,7 +82,7 @@ $(function(){
 		//
 		let scope = {a:_a, b:_b, n:_n}
 		var deltax = math.eval("(b - a)/n " , scope);
-		
+		if(deltax == 0) {deltax = 999;}
 		//
 		// Rectangle
 		//
@@ -153,11 +155,6 @@ function setup() {
 }
 
 function draw() {
-	noStroke();
-	fill(255);
-	rect(_width - 52.5, _height - 22.5, 45, 15);
-	fill(255,0,0);
-	text(Math.ceil(frameRate()) + ' FPS', _width - 50, _height - 10);
 	translate(width / 2, height / 2);
 }
 
@@ -177,18 +174,14 @@ function grid(){
 }
 
 function fDraw(){
-	let _x_1;
-	let _x_2;
+	let _x;
 	var g = graphic;
-	var half_g = (graphic/2);
 	
 	stroke(0);
-	
-	_x_1 = {x:(0-_width)};
-	for(var i = (0-_width); i < (_width); i += g){
-		_x_2 = {x:i+half_g};
-		line(_x_1.x*zoom, -Number(math.eval( _y, _x_1 ))*zoom,_x_2.x*zoom, -Number(math.eval( _y, _x_2 ))*zoom);
-		_x_1 = _x_2;
+	noFill();
+	for(var i = (0-_width/zoom); i < (_width/zoom); i += g){
+		_x = {x:i};
+        point(i*zoom,-Number(math.eval( _y, _x )*zoom));
 	}
 	
 	stroke(255,0,0,25);
@@ -198,6 +191,69 @@ function fDraw(){
 
 function Rectangle(){
 	
+	if(_a > _b) { _b = [_a, _a = _b][0]; }
+	
+	let scope = {a:Number(_a), b:Number(_b), n:Number(_n)}
+	var deltax = Number(math.eval("(b - a)/n " , scope));
+	var half_deltax =  Number(deltax/2);
+	
+	
+	
+	fill(255,200,80, 80);
+	let _x;
+	strokeWeight(2);
+	for(var i = Number(_a) + half_deltax; i <= Number(_b); i += Number(deltax)){
+		_x = {x:i};
+		var mat = -Number(math.eval( _y, _x ));
+		stroke(255,200,80);
+		line(i*zoom, 0, i*zoom, mat*zoom);
+		noStroke();
+		rect((i-half_deltax)*zoom, 0, deltax*zoom, (mat*zoom)); 
+	}
+	strokeWeight(1);
+}
+
+function Trapezoidal(){
+	if(_a > _b) { _b = [_a, _a = _b][0]; }
+	
+	let scope = {a:Number(_a), b:Number(_b), n:Number(_n)}
+	var deltax = Number(math.eval("(b - a)/n " , scope));
+	
+	
+	let _x;
+	let _x2
+	beginShape();
+	
+		
+	
+	
+	var times = 0;
+	strokeWeight(2);
+	for(var i = Number(_a); i <= Number(_b); i += Number(deltax)){
+		
+		_x = {x:i+0.0001};
+		_x2 = {x:i+0.0001 + deltax};
+		
+		
+		
+		stroke(255,200,80);
+		line(_x*zoom, 0, _x*zoom, -Number(math.eval( _y, _x ))*zoom);
+		line(_x2*zoom, 0, _x2*zoom, -Number(math.eval( _y, _x2 ))*zoom);
+		
+		
+		if(times != _n){
+			noStroke();fill(255,200,80, 80);
+			quad(_x.x*zoom, -Number(math.eval( _y, _x ))*zoom, _x2.x*zoom, -Number(math.eval( _y, _x2 ))*zoom, _x2.x*zoom, 0, _x.x*zoom, 0);
+			
+			stroke(255,0,255);
+			line(_x.x*zoom, -Number(math.eval( _y, _x ))*zoom, _x2.x*zoom, -Number(math.eval( _y, _x2 ))*zoom);
+		}
+		times++;
+	}
+	strokeWeight(1);
+}
+
+function Parable(){
 	
 	if(_a > _b) { _b = [_a, _a = _b][0]; }
 	
@@ -206,21 +262,26 @@ function Rectangle(){
 	var half_deltax =  Number(deltax/2);
 	
 	
-	stroke(255,200,80);
-	fill(255, 200, 80, 45);
+	noFill();
+	
 	let _x;
+	strokeWeight(2);
 	for(var i = Number(_a) + half_deltax; i <= Number(_b); i += Number(deltax)){
+		stroke(255,200,80);
 		_x = {x:i};
 		var mat = -Number(math.eval( _y, _x ));
-		line(i*zoom, 0, i*zoom, mat*zoom);
-		rect((i-half_deltax)*zoom, 0, deltax*zoom, (mat*zoom)); 
+		beginShape();
+		_x = {x: i - half_deltax};
+		curveVertex(_x.x*zoom, -Number(math.eval( _y, _x ))*zoom);curveVertex(_x.x*zoom, -Number(math.eval( _y, _x ))*zoom);
+		line(_x.x*zoom, 0, _x.x*zoom, -Number(math.eval( _y, _x ))*zoom);
+		_x = {x: i};
+		curveVertex(_x.x*zoom, -Number(math.eval( _y, _x ))*zoom);
+		line(_x.x*zoom, 0, _x.x*zoom, -Number(math.eval( _y, _x ))*zoom);
+		_x = {x: i + half_deltax};	
+		curveVertex(_x.x*zoom, -Number(math.eval( _y, _x ))*zoom);curveVertex(_x.x*zoom, -Number(math.eval( _y, _x ))*zoom);
+		line(_x.x*zoom, 0, _x.x*zoom, -Number(math.eval( _y, _x ))*zoom);
+		stroke(255,0,255);
+		endShape();
 	}
-}
-
-function Trapezoidal(){
-	
-}
-
-function Parable(){
-	
+	strokeWeight(1);
 }
