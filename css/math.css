@@ -29,8 +29,6 @@ input:hover{
 
 .answer{
 	border-bottom: 1px solid #dc3545;
-	width:100%;
-	font-size: 200%;
 	font-family: consolas;
 }
 
@@ -43,5 +41,33 @@ input:hover{
 }
 
 .settings{
-	position: absolute; left: 25px; background-color:white; border: 1px solid red; padding: 10px;
+	position: absolute; left: 50px; background-color:white; border: 1px solid red; padding: 10px;
+}
+
+.btn, .wide{
+	width:100%;
+}
+
+.space{
+	margin-left : 10px;
+}
+
+.info{
+	background-color: #dc3545;
+	text-align: center;
+	color: white;
+	font-size: 125%;
+	border-bottom: 5px solid #bd2130;
+	padding: 5px;
+	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.info:hover{
+	background-color: #bd2130;
+	border-bottom: 5px solid #dc3545;
+	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+#settings {	
+	position: absolute; left: 10px; background-color:white; border: 1px solid red; padding: 5px; width: 5ex; height: 5ex; text-align:center;
 }

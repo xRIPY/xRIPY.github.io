@@ -22,42 +22,38 @@
 			<div class="offset-md-1 col-sm-10">
 				<table id="var">
 				
-					<tr><td><div>$$y =$$</div></td> <td><input id="y" placeholder="Enter function in x"></td></tr>
+					<tr><td><div>$$y =$$</div></td> <td><input id="y" placeholder="Enter function in x"></td><td rowspan="3"> <span class="space"> </span></td><td class="wide" rowspan="3"><div id="pretty">$$$$</div></td></tr>
 					<tr><td><div>$$n =$$</div></td> <td><input type="number" id="n" placeholder="Enter a number n" min="0"></td></tr>
-					<tr><td><div>$$b =$$</div></td> <td><input type="number" id="b" placeholder="Enter an extreme b"></td></tr>
 					<tr><td><div>$$a =$$</div></td> <td><input type="number" id="a" placeholder="Enter an extreme a"></td></tr>
+					<tr><td><div>$$b =$$</div></td> <td><input type="number" id="b" placeholder="Enter an extreme b"></td><td></td><td class="wide"><button class="btn btn-danger" id="elaborate">Elaborate</button></td></tr>
 					
 					
 				</table>
 			</div>
 		</div>
 		
-		<div class="row">
-		<button class="btn btn-danger" id="elaborate" style="width:100%">Elaborate</button>
-		</div>
-		
-		<hr>
-				<div id="pretty">$$$$</div>
 		<hr>
 
 		<div class="row">
 			<div class="offset-md-1 col-sm-10">
 				<table>
 					
-						<tr><td><header class="info">Rectangle</header></td> <td><p class="answer" id="Rectangle"></p></td></tr>
-						<tr><td><header class="info">Trapezoidal</header></td> <td><p class="answer" id="Trapezoidal"></p></td></tr>
-						<tr><td><header class="info">Parable</header></td> <td><p class="answer" id="Parable"></p></td></tr>
+						<tr><td><div class="info">Rectangle</div></td> <td><p class="answer" id="Rectangle"></p></td></tr>
+						<tr><td><div class="info">Trapezoidal</div></td> <td><p class="answer" id="Trapezoidal"></p></td></tr>
+						<tr><td><div class="info">Parable</div></td> <td><p class="answer" id="Parable"></p></td></tr>
 						
 				</table>
 			</div>
 		</div>
 		
-		
+		<hr>
 		
 			
 	</div>
+		<div id="settings">
+		+
+		</div>
 		<div class="settings">
-		
 		<table id="setting">
 				
 					<tr><td><div>$$Zoom:$$</div></td> <td><input id="zoom" type="range" value="50" step="5" min="10" max="200"></input></td></tr>

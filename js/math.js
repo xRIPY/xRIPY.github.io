@@ -11,6 +11,14 @@ var _height = window.innerHeight - 50;
 var zoom = Number($("#zoom").val());
 var graphic = Number($("#graphic").val());
 
+var visible = true;
+$("#settings").on("click",function(){
+	if(visible) $(".settings").hide();
+	else $(".settings").show();
+	
+	visible = !visible;
+});
+
 function Pretty(){
 	try {
 			_a = $("#a").val() == "" ? "a" : $("#a").val() ;
@@ -234,16 +242,14 @@ function Trapezoidal(){
 		_x = {x:i+0.0001};
 		_x2 = {x:i+0.0001 + deltax};
 		
-		
-		
-		stroke(255,200,80);
-		line(_x*zoom, 0, _x*zoom, -Number(math.eval( _y, _x ))*zoom);
-		line(_x2*zoom, 0, _x2*zoom, -Number(math.eval( _y, _x2 ))*zoom);
-		
-		
 		if(times != _n){
-			noStroke();fill(255,200,80, 80);
+			noStroke();
+			fill(255,200,80, 80);
 			quad(_x.x*zoom, -Number(math.eval( _y, _x ))*zoom, _x2.x*zoom, -Number(math.eval( _y, _x2 ))*zoom, _x2.x*zoom, 0, _x.x*zoom, 0);
+			
+			stroke(255,200,80);
+			line(_x.x*zoom, 0, _x.x*zoom, -Number(math.eval( _y, _x ))*zoom);
+			line(_x2.x*zoom, 0, _x2.x*zoom, -Number(math.eval( _y, _x2 ))*zoom);
 			
 			stroke(255,0,255);
 			line(_x.x*zoom, -Number(math.eval( _y, _x ))*zoom, _x2.x*zoom, -Number(math.eval( _y, _x2 ))*zoom);
