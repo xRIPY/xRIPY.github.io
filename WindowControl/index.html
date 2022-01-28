@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!---------------------------------------------HEAD------------------------------------------------>
+<title> Index </title>
+<meta charset="UTF-8">
+<style>
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	#footer{
+		z-index: -99;
+		position: fixed;
+		text-align: center;
+		top: 99%;
+		left: 50%;
+		opacity: 0.5;
+		transform: translate(-50%, -100%);
+		display: inline-block;
+		width: 25ex;
+	}
+	pre {
+		margin: 5ex;
+		padding: 1ex;
+		border-left: 1px dashed rgb(255,0,0);
+	}
+</style>
+<!------------------------------------------------------------------------------------------------->
+</head>
+<body>
+<!---------------------------------------------BODY------------------------------------------------>
+<pre>
+Check code at: <a href="https://github.com/xRIPY/WindowControl">https://github.com/xRIPY/WindowControl</a>
+
+README.txt:
+Simple program to add more control over a window
+Instructions:
+- F1	| Toggle "AlwaysOnTop" of window
+- F2	| Change Opacity of window
+- F3	| Set window as "Anchor"
+- F4	| Exit
+
+Anchor hotkeys:
+- WIN + [Space]		| Sends the [Space] input to the Anchor window.
+- WIN + [Arrow key]	| Sends the [Arrow key] input to the Anchor window.
+- WIN + [WASD]		| Sends the equivalent [Arrow key] input to the Anchor window.
+
+- WIN + [Z]		| While [Z] is pressed, the Anchor window becomes the active window. 
+			| -Press [Shift] to prevent key spam. ([Alt] works too, or just keep [Win] pressed)
+			| -Press [Ctrl] to keep the window open.
+			| -Press [Alt+tab] to go back to your previous window.
+
+Other:
+- ALT + [WASD]		| Presses the equivalent [Arrow key] input.
+___
+
+Notes:
+If you wish to change the Keys you must edit and recomplie the .AHK
+Program by RIPY @xripy
+</pre>
+<span id="footer" style="">By <span style="color:#aa2f2f"> RIPY </span> @xripy</span>
+
+<!------------------------------------------------------------------------------------------------->
+
+
+</body>
+</html>
