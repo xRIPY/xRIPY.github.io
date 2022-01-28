@@ -10,7 +10,7 @@
 <!-- Start -->
 
 <div id="mainArea">
-<strong>Welcome!</strong> <br>
+<strong class="red-soft">Welcome!</strong> <br>
 <span>This is a simple offline page I made to check video/gif frame by frame.</span>
 </div>
 
@@ -29,13 +29,22 @@
 <div class="testButton" >
 <span>[FramesJS.js]</span><br>
 </div>
-</a> <span class="unimportant"><b><- Click me!</b></span>
+
+</a> <span class="unimportant"><b><- Click me to try it!</b></span>
+
 <br> <hr class="sep">
-<span class="unimportant">Drag <b class="red-soft">[FrameJS.js]</b> on the bookmark bar to use it anywhere!</span> <br>
-<span class="unimportant"><b class="red-soft">[Right-click anywhere -> Save]</b> to use this page offline! </span>
+
+<div style="border-left: 1px dashed rgba(255,0,0,0.5); padding:1ex">
+<span class="red" style="font-family:MS PGothic" >(っ・ω・)っ</span> <br> <br>
+<div class="important">
+<span> Add <b class="red-soft">[FrameJS.js]</b> to bookmark to use it anywhere!</span> <br>
+<span> <span class="red-soft">[CTRL + SHIFT + B]</span>, then drag the box to the bookmark bar. </span> <br> <br>
+<span> <b class="red-soft">[Right-click anywhere -> Save]</b> to use this page offline! </span>
+</div>
 
 <hr class="sep">
-<span class="unimportant"> Check code at <a target="_blank" href="https://github.com/xRIPY/xRIPY.github.io/tree/master/FramesJS">https://github.com/xRIPY/xRIPY.github.io/tree/master/FramesJS</a> </span>
+
+<span class="unimportant"> Check code at <a  class="link" target="_blank" href="https://github.com/xRIPY/xRIPY.github.io/tree/master/FramesJS">https://github.com/xRIPY/xRIPY.github.io/tree/master/FramesJS</a> </span>
 
 <hr class="sep">
 <div style="border-left: 1px dashed rgba(255,0,0,0.5);" class="clickToReveal" >
@@ -49,20 +58,20 @@
 
 <hr class="sep">
 <div style="border-left: 1px dashed rgba(255,0,0,0.5);" class="clickToReveal" >
-<span class="unimportant" onclick="if(this.parentNode.querySelector('pre').style.display == 'block') {this.parentNode.querySelector('pre').style.display = 'none'} else { this.parentNode.querySelector('pre').style.display = 'block' }">Click <b class="red-soft">[this]</b> for development info</span>
+<span class="unimportant" onclick="if(this.parentNode.querySelector('pre').style.display == 'block') {this.parentNode.querySelector('pre').style.display = 'none'} else { this.parentNode.querySelector('pre').style.display = 'block' }">Click <b class="red-soft">[this]</b> for development info.</span>
 <pre  style="display: none;" class="unimportant">
 I wanted a program to see animations frame by frame, so I made one.
 -
 For videos it works just fine; the browser already has everything needed to go frame by frame (except FPS informations).
 Sometimes videos may be found inside an iFrame, if that's the case, the script will give a link to the source of the iframe, where the video is stored.
 For GIFs it's another story, had to create what I named "GifEmulator", a canvas where every frame it's drawn.
-It's slow, really slow; there is no optimization whatsoever... Consider using <a target="_blank" href="https://slbkbs.org/jsgif/">jsgif</a> instead for GIFs frame by frame.
+It's slow, really slow; there is no optimization whatsoever... Consider using <a class="link" target="_blank" href="https://slbkbs.org/jsgif/">jsgif</a> instead for GIFs frame by frame.
 BUT my version is compatible with more GIFs, as I have included a "broken gif fix" and a "disposal method 3 check".
 
 Examples: 
-<img title="Disposal method 3" style="height:25ex;" src="examples/kabe2.gif"></img>
-<img title="Broken Gif" style="height:25ex;" src="examples/saksealthunder.gif"></img>
+<img title="Disposal method 3" style="height:25ex;" src="examples/kabe2.gif"></img> <img title="Broken Gif" style="height:25ex;" src="examples/saksealthunder.gif"></img>
 </pre>
+</div>
 </div>
 
 <!-- End -->
@@ -86,15 +95,15 @@ Examples:
 	</div>
 </div>
 <div id="error">
-	<strong>Error, not supported</strong> <br>
+	<strong class="red-soft">Error, not supported</strong> <br>
 	<span>Currently only supports video/gif/image formats</span>
 </div>
 <div id="error2">
-	<strong>Error, resource failed to open</strong> <br>
+	<strong class="red-soft">Error, resource failed to open</strong> <br>
 	<span>Be sure what you are inputting is the source of the file.</span>
 </div>
 <div id="loading">
-	<strong>Loading, Please wait!</strong> <br>
+	<strong class="red-soft">Loading, Please wait!</strong> <br>
 	<span><img  src="data:image/gif;base64,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"></img></span>
 </div>
 </div>
