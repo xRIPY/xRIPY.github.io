@@ -34,7 +34,7 @@ this.FramesJS_OverlaySystem = function(identifier,coverAll,classNameId,innerHTML
 	
 	let overlay = document.createElement('div');
 	overlay.className = classNameId;
-	overlay.style = 'position: absolute; z-index:10000; visibility: hidden;';
+	overlay.style = 'position: absolute; z-index:10000;';
 	overlay.innerHTML = innerHTML;
 	let overlayList = [];
 	elementList.forEach(function(element) {let x = overlay.cloneNode(true); x.overlayOf = element; overlayList.push({element:element, overlay:x})});
@@ -46,16 +46,24 @@ this.FramesJS_OverlaySystem = function(identifier,coverAll,classNameId,innerHTML
 		document.querySelector('head').prepend(style);
 	}
 	
+	// delete hidden elements
+	var x;
+	for(let i = 0; i < overlayList.length; i++) {
+		try { x = overlayList[i].element.getBoundingClientRect(); } catch(e) { overlayList.splice(i,1); i--; continue;}
+		if(x.width == 0 || x.height == 0) { overlayList.splice(i,1); i--; continue; } 
+	}
+		
+	// add to document overlays
+	for(let i = 0; i < overlayList.length; i++) { document.querySelector('body').prepend(overlayList[i].overlay); }
+	
 	AdjustOverlay();
 	let intervalId = setInterval(AdjustOverlay, 250);
-	for(let i = 0; i < overlayList.length; i++) { document.querySelector('body').prepend(overlayList[i].overlay); }
 	
 	function AdjustOverlay(){
 		var x; 
 		for(let i = 0; i < overlayList.length; i++) {
-			try { x = overlayList[i].element.getBoundingClientRect(); } catch(e) { overlayList.splice(i,1); continue;}
-			if(x.width == 0 || x.height == 0) { overlayList.splice(i,1); continue; } 
-			overlayList[i].overlay.style.visibility = 'visible';
+			try { x = overlayList[i].element.getBoundingClientRect(); } catch(e) { overlayList.splice(i,1); i--; continue;}
+			if(x.width == 0 || x.height == 0) { overlayList.splice(i,1); i--; continue; } 
 			if(coverAll) { overlayList[i].overlay.style.width = x.width+'px'; overlayList[i].overlay.style.height = x.height+'px'; }
 			overlayList[i].overlay.style.left = x.left+window.scrollX-borderOffsetPX+'px'; overlayList[i].overlay.style.top = x.top+window.scrollY-borderOffsetPX+'px';
 		}
