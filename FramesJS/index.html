@@ -11,7 +11,7 @@
 
 <div id="mainArea">
 <strong class="red-soft">Welcome!</strong> <br>
-<span>This is a simple offline page I made to check video/gif frame by frame.</span>
+<span>This is a simple offline page I made to check videos/GIFs frame by frame.</span>
 </div>
 
 <hr class="sep">
@@ -37,8 +37,8 @@
 <div style="border-left: 1px dashed rgba(255,0,0,0.5); padding:1ex">
 <span class="red" style="font-family:MS PGothic" >(っ・ω・)っ</span> <br> <br>
 <div class="important">
-<span> Add <b class="red-soft">[FrameJS.js]</b> to bookmark to use it anywhere!</span> <br>
-<span> <span class="red-soft">[CTRL + SHIFT + B]</span>, then drag the box to the bookmark bar. </span> <br> <br>
+<span> Add <b class="red-soft">[FrameJS.js]</b> to bookmarks to use it anywhere!</span> <br>
+<span> <span class="red-soft">[CTRL + SHIFT + B]</span>, then drag the box to the bookmarks bar. </span> <br> <br>
 <span> <b class="red-soft">[Right-click anywhere -> Save]</b> to use this page offline! </span>
 </div>
 
@@ -60,12 +60,14 @@
 <div style="border-left: 1px dashed rgba(255,0,0,0.5);" class="clickToReveal" >
 <span class="unimportant" onclick="if(this.parentNode.querySelector('pre').style.display == 'block') {this.parentNode.querySelector('pre').style.display = 'none'} else { this.parentNode.querySelector('pre').style.display = 'block' }">Click <b class="red-soft">[this]</b> for development info.</span>
 <pre  style="display: none;" class="unimportant">
-I wanted a program to see animations frame by frame, so I made one.
+Quick rundown: | A really simple system, select the HTML video/image element, and an overlay will appear with controls to move around the animation frame by frame.
+Time taken: | 2+ weeks.
+Comment: | Made every possible mistake, re-written the code at least 4 times, until I found this solution... Which I'm happy with.
 -
 For videos it works just fine; the browser already has everything needed to go frame by frame (except FPS informations).
 Sometimes videos may be found inside an iFrame, if that's the case, the script will give a link to the source of the iframe, where the video is stored.
 For GIFs it's another story, had to create what I named "GifEmulator", a canvas where every frame it's drawn.
-It's slow, really slow; there is no optimization whatsoever... Consider using <a class="link" target="_blank" href="https://slbkbs.org/jsgif/">jsgif</a> instead for GIFs frame by frame.
+The caching process is slow, really slow; there is no optimization whatsoever... Consider using <a class="link" target="_blank" href="https://slbkbs.org/jsgif/">jsgif</a> instead for GIFs frame by frame.
 BUT my version is compatible with more GIFs, as I have included a "broken gif fix" and a "disposal method 3 check".
 
 Examples: 

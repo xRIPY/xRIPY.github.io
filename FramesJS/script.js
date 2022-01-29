@@ -27,7 +27,7 @@ function drop(e) {
 }
 // end dropbox stuff
 
-function FromUrl(URL){
+function FromUrl(){
 	let x = prompt('Source:','URL');
 	if(!x || x == "URL") {return};
 	document.getElementById("mainArea").innerHTML = document.getElementById("loading").innerHTML;;
