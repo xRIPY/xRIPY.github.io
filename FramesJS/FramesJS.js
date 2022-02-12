@@ -11,15 +11,15 @@ this.frameDisplayIntervalId;
 this.frameDisplayIntervalId;
 this.currentFrameDisplay;
 this.totalFramesDisplay;
-this.fps = 24; //used for video
-this.frameList = []; //used for gif
-this.ctxGifEmulator; //used for gif
-this.gifEmulatorIntervalId = -1; //used for gif
-this.isPaused = false; //used for gif
-this.isEmulatorPreparing = false; //used for gif
-this.isEmulatorReady = false; //used for gif
-this.currentFrame; //used for video/gif
-this.totalFrames; //used for video/gif
+this.fps = 24;                   	//used for video
+this.frameList = []; 			 	//used for gif
+this.ctxGifEmulator; 			 	//used for gif
+this.gifEmulatorIntervalId = -1; 	//used for gif
+this.isPaused = false; 				//used for gif
+this.isEmulatorPreparing = false; 	//used for gif
+this.isEmulatorReady = false;		//used for gif
+this.currentFrame;					//used for video/gif
+this.totalFrames; 					//used for video/gif
 
 this.FramesJS_OverlaySystem = function(identifier,coverAll,classNameId,innerHTML,customCSS,borderOffsetPX = 0){
 	
@@ -452,27 +452,27 @@ this.ImagePath = function() {
 		for(let i = 0; i < 1<<lzwMinCode; i++){CODE_TABLE.push([i]);}
 		CODE_TABLE.push(['clear code'],['end-of-information code'])
 		// init
-		GetCode(); GetCode(); // let CODE be the first code in the code stream (skip 4)
-		INDEX_STREAM.push(...CODE_TABLE[CODE]); // output {CODE} to index stream
+		GetCode(); GetCode(); 																// let CODE be the first code in the code stream (skip 4)
+		INDEX_STREAM.push(...CODE_TABLE[CODE]); 											// output {CODE} to index stream
 		while(1){
 			PREV_CODE = CODE;
 			GetCode();
-			if(CODE_TABLE[CODE] == 'clear code') { // clear code
-				CODE_SIZE = lzwMinCode+1;  // reset code length
-				CODE_TABLE = CODE_TABLE.splice(0,(1<<lzwMinCode)+2); // clear code table 
-				GetCode(); // we are simulating an init.
+			if(CODE_TABLE[CODE] == 'clear code') { 											// clear code
+				CODE_SIZE = lzwMinCode+1;  													// reset code length
+				CODE_TABLE = CODE_TABLE.splice(0,(1<<lzwMinCode)+2); 						// clear code table 
+				GetCode();  																// we are simulating an init.
 				INDEX_STREAM.push(...CODE_TABLE[CODE]);
 				continue;
 			}
-			if(CODE_TABLE[CODE] == 'end-of-information code'){break;} // end of information code
-			if(CODE_TABLE[CODE] != undefined) { // found
-				INDEX_STREAM.push(...CODE_TABLE[CODE]); // output {CODE} to index stream
-				K = CODE_TABLE[CODE][0]; // let K be the first index in {CODE}
-			} else { // not found
-				K = CODE_TABLE[PREV_CODE][0]; // let K be the first index in {CODE-1}
-				INDEX_STREAM.push(...CODE_TABLE[PREV_CODE].concat(K)); // output {CODE-1}+K to index stream
+			if(CODE_TABLE[CODE] == 'end-of-information code'){break;} 						// end of information code
+			if(CODE_TABLE[CODE] != undefined) { 											// found
+				INDEX_STREAM.push(...CODE_TABLE[CODE]); 									// output {CODE} to index stream
+				K = CODE_TABLE[CODE][0]; 													// let K be the first index in {CODE}
+			} else {																		// not found
+				K = CODE_TABLE[PREV_CODE][0]; 												// let K be the first index in {CODE-1}
+				INDEX_STREAM.push(...CODE_TABLE[PREV_CODE].concat(K)); 						// output {CODE-1}+K to index stream
 			}
-			CODE_TABLE.push(CODE_TABLE[PREV_CODE].concat(K)); // add {CODE-1}+K to code table
+			CODE_TABLE.push(CODE_TABLE[PREV_CODE].concat(K)); 								// add {CODE-1}+K to code table
 			if (CODE_TABLE.length == (1 << CODE_SIZE) && CODE_SIZE < 12) { CODE_SIZE++ }
 		}
 		
@@ -501,6 +501,7 @@ this.ImagePath = function() {
 		// pixel stream will aready be built in accordance to the interlace flag.
 		let pixelStream = []; // [[r,g,b,a],[r,g,b,a],[r,g,b,a],...];
 		
+		try {
 		// deal with trasparency
 		if(transparentColorIndex == -1) {
 			for(let i = 0; i < INDEX_STREAM.length; i++){
@@ -511,6 +512,7 @@ this.ImagePath = function() {
 				pixelStream[i] = 'rgba('+colorTable[INDEX_STREAM[i]].join(',')+','+(transparentColorIndex == INDEX_STREAM[i] ? 0 : 1)+')';
 			}
 		}
+		} catch(e) {console.log("[FramesJS] A frame was weird... Skip");  selfReference.frameList.push(selfReference.frameList.at(-1)); return};
 		
 		// draw it!
 		let step = 0;
